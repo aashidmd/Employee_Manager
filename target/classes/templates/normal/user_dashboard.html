@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>user_dashboard</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="card">
+				<div class="card-body my-5">
+					<div class="container text-center">
+						<img src="" style="height: 200px; width: 200px"
+							class="my_profile_picture" th:src="@{'/img/profile.jpg'}"
+							alt="profile photo" />
+					</div>
+
+					<h1
+						class="text-center mt-3 text-secondary font-roboto font-bold">
+						Start Adding your Employees contact </h1>
+
+					<a th:href="@{/user/add-contact}"
+						class="btn btn-primary mt-4 btn-block text-uppercase">Add
+						New Contact</a>
+						
+						<hr />
+						
+						<h3 class="my-3 font-weight-light" style="text-align:center;">Support Me!</h3>
+						
+						<input id="payment_field" type="text" class="form-control my-2" placeholder="Enter amount here" />
+						
+						<div class="container text-center mt-3">
+							<button onclick="paymentStart()" class="btn btn-success btn-block">Checkout</button>
+						</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+        $(document).ready(() => {
+          $(".item").removeClass("active");
+          $("#home-link").addClass("active");
+        });
+      </script>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	</section>
+</body>
+</html>

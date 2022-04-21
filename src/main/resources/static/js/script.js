@@ -81,10 +81,9 @@ const paymentStart = () => {
           key: "rzp_test_haDRsJIQo9vFPJ",
           amount: response.amount,
           currency: "INR",
-          name: "Smart Contact Manager",
-          description: "Donation",
-          image:
-            "https://yt3.ggpht.com/-4BGUu55s_ko/AAAAAAAAAAI/AAAAAAAAAAA/3Cfl_C4o8Uo/s108-c-k-c0x00ffffff-no-rj-mo/photo.jpg",
+          name: "Employee Managment",
+          description: "Support",
+          
           order_id: response.id,
           handler: function (response) {
             console.log(response.razorpay_payment_id);

@@ -298,58 +298,58 @@ public class UserController {
 	}
 
 	// change password..handler
-	@PostMapping("/change-password")
-	public String changePassword(@RequestParam("oldPassword") String oldPassword,
-			@RequestParam("newPassword") String newPassword, Principal principal, HttpSession session) {
-		System.out.println("OLD PASSWORD " + oldPassword);
-		System.out.println("NEW PASSWORD " + newPassword);
-
-		String userName = principal.getName();
-		User currentUser = this.userRepository.getUserByUserName(userName);
-		System.out.println(currentUser.getPassword());
-
-		if (this.bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
-			// change the password
-
-			currentUser.setPassword(this.bCryptPasswordEncoder.encode(newPassword));
-			this.userRepository.save(currentUser);
-			session.setAttribute("message", new Message("Your password is successfully changed..", "success"));
-
-		} else {
-			// error...
-			session.setAttribute("message", new Message("Please Enter correct old password !!", "danger"));
-			return "redirect:/user/settings";
-		}
-
-		return "redirect:/user/index";
-	}
+//	@PostMapping("/change-password")
+//	public String changePassword(@RequestParam("oldPassword") String oldPassword,
+//			@RequestParam("newPassword") String newPassword, Principal principal, HttpSession session) {
+//		System.out.println("OLD PASSWORD " + oldPassword);
+//		System.out.println("NEW PASSWORD " + newPassword);
+//
+//		String userName = principal.getName();
+//		User currentUser = this.userRepository.getUserByUserName(userName);
+//		System.out.println(currentUser.getPassword());
+//
+//		if (this.bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
+//			// change the password
+//
+//			currentUser.setPassword(this.bCryptPasswordEncoder.encode(newPassword));
+//			this.userRepository.save(currentUser);
+//			session.setAttribute("message", new Message("Your password is successfully changed..", "success"));
+//
+//		} else {
+//			// error...
+//			session.setAttribute("message", new Message("Please Enter correct old password !!", "danger"));
+//			return "redirect:/user/settings";
+//		}
+//
+//		return "redirect:/user/index";
+//	}
 
 	
 	//creating order for payment
-	
-	@PostMapping("/create_order")
-	@ResponseBody
-	public String createOrder(@RequestBody Map<String, Object> data) throws Exception
-	{
-		//System.out.println("Hey order function ex.");
-		System.out.println(data);
-		
-		int amt=Integer.parseInt(data.get("amount").toString());
-		
-		var client=new RazorpayClient("rzp_test_haDRsJIQo9vFPJ", "owKJJes2fwE6YD6DToishFuH");
-		
-		JSONObject ob=new JSONObject();
-		ob.put("amount", amt*100);
-		ob.put("currency", "INR");
-		ob.put("receipt", "txn_235425");
-		
-		//creating new order
-		
-		Order order = client.Orders.create(ob);
-		System.out.println(order);
-		
-			
-		return order.toString();
-	}
+//	
+//	@PostMapping("/create_order")
+//	@ResponseBody
+//	public String createOrder(@RequestBody Map<String, Object> data) throws Exception
+//	{
+//		//System.out.println("Hey order function ex.");
+//		System.out.println(data);
+//		
+//		int amt=Integer.parseInt(data.get("amount").toString());
+//		
+//		var client=new RazorpayClient("rzp_test_haDRsJIQo9vFPJ", "owKJJes2fwE6YD6DToishFuH");
+//		
+//		JSONObject ob=new JSONObject();
+//		ob.put("amount", amt*100);
+//		ob.put("currency", "INR");
+//		ob.put("receipt", "txn_235425");
+//		
+//		//creating new order
+//		
+//		Order order = client.Orders.create(ob);
+//		System.out.println(order);
+//		
+//			
+//		return order.toString();
+//	}
 
 }
